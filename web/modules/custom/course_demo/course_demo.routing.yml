@@ -1,0 +1,15 @@
+course_demo.hello:
+  path: '/course-demo/hello/{name}'
+  defaults:
+    _controller: '\Drupal\course_demo\Controller\CourseDemoController::hello'
+    _title: 'Hello Drupal'
+  requirements: 
+    _permission: 'access content'
+
+course_demo.admin:
+  path: 'admin/config/course-demo'
+  defaults:
+    _controller: '\Drupal\course_demo\Controller\CourseDemoController::admin'
+    _title: 'Course Demo'
+  requirements:
+    _permission: 'administer course demo'

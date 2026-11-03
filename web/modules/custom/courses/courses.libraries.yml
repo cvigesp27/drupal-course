@@ -1,0 +1,4 @@
+experience_badges:
+  css:
+    component:
+      css/experience-badges.css: {}

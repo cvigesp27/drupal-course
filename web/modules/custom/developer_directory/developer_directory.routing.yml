@@ -1,0 +1,24 @@
+developer_directory.list:
+  path: '/developers'
+  defaults:
+    _title: 'Listado'
+    _controller: '\Drupal\developer_directory\Controller\DeveloperDirectoryController::list'
+  requirements:
+    _permission: 'access content'
+
+developer_directory.view:
+  path: '/developers/{name}'
+  defaults:
+    _title: 'Detalles'
+    _controller: '\Drupal\developer_directory\Controller\DeveloperDirectoryController::view'
+  requirements:
+    _permission: 'access content'
+    name: 'David|Rubén|Airam|Antonio|Elí|Yesica|Cristian'
+
+developer_directory.admin:
+  path: '/admin/config/developer-directory'
+  defaults:
+    _title: 'Developer directory'
+    _controller: '\Drupal\developer_directory\Controller\DeveloperDirectoryController::admin'
+  requirements:
+    _permission: 'administer developer directory'

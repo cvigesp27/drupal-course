@@ -1,0 +1,9 @@
+services:
+  courses.manager:
+    class: Drupal\courses\Service\CoursesManager
+    arguments:
+      - '@entity_type.manager'
+  courses.notification_queue:
+    class: Drupal\course\Service\CoursesNotificatiomQueue
+    arguments:
+      - '@queue'

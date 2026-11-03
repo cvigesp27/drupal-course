@@ -1,0 +1,5 @@
+name: 'Developer Directory'
+type: module
+description: 'Directorio de desarrolladores para aprender Drupal'
+package: Custom
+core_version_requirement: ^10 || ^11

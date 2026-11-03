@@ -1,0 +1,25 @@
+<article class="course-details"> 
+    <h1>{{ name|upper }}</h1>
+
+    {% if sale == true %}
+        <strong>Price ON SALE: </strong> <s>{{ price }} €</s>
+    {% else %}
+        <strong>Price: </strong> {{ price }} €
+    {% endif %}
+
+    <p>
+        {{ teacher }}                    
+    </p>
+
+    <p>
+        <strong>Duration: </strong> {{ duration }} hours                    
+    </p>
+
+    {% if duration >= 40 %}
+        <p>Long and detailed course</p>
+    {% else %}
+        <p>Short with exercices</p>
+    {% endif %}
+
+    {% include '@courses/course-tags.html.twig' with { tags: tags } %}
+</article>

@@ -1,0 +1,7 @@
+course_demo.admin:
+  title: 'Course Demo'
+  description: 'Configuración de Course Demo'
+  route_name: 'course_demo.admin'
+  parent: system.admin_config
+  weight: 5
+

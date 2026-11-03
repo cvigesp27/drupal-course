@@ -1,0 +1,19 @@
+<article class="developer-profile"> 
+    <h2>{{ name|upper }}</h2>
+
+    <p>
+        <strong>Role: </strong> {{ role|default('Sin Rol') }}
+    </p>
+
+    <p>
+        <strong>Experience: </strong> {{ experience }} years                    
+    </p>
+
+    {% if experience >= 10 %}
+        <p>Desarrollador experimentado</p>
+    {% else %}
+        <p>Junior o Intermedio</p>
+    {% endif %}
+
+    {% include '@developer_directory/developer-skills.html.twig' with { technologies: skills } %}
+</article>

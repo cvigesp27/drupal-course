@@ -1,0 +1,14 @@
+<div class="courses-featured">
+
+  {% if courses %}
+    <ul>
+      {% for course in courses %}
+        <li>
+          {{ course.getName }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>{{ 'No courses available.'|t }}</p>
+  {% endif %}
+</div>

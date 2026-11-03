@@ -1,0 +1,6 @@
+courses.list:
+  title: 'Courses'
+  description: 'Cursos para el ejercicio'
+  parent: 'system.admin_config'
+  route_name: courses.list
+  weight: 5

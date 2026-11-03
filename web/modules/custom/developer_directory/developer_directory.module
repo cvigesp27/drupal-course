@@ -1,0 +1,18 @@
+<?php
+
+/** 
+ * Implements hook_theme()
+ */
+function developer_directory_theme($existing, $type, $theme, $path): array {
+    return [
+        'developer_profile' => [
+            'variables' => [
+                'name' => null,
+                'role' => null,
+                'experience' => null,
+                'skills' => null
+            ],
+            'template' => 'developer-profile'
+        ]
+    ];
+}

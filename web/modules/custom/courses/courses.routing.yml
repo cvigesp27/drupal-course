@@ -1,0 +1,87 @@
+courses.list:
+  path: '/courses'
+  defaults:
+    _title: 'Courses'
+    _controller: '\Drupal\courses\Controller\CoursesController::list'
+  requirements:
+    _permission: 'access content'
+
+# courses.view:
+#   path: '/courses/{name}'
+#   defaults:
+#     _title: 'Detalle'
+#     _controller: '\Drupal\courses\Controller\CoursesController::view'
+#   requirements:
+#     _permission: 'access content'
+#     name: 'David|Rubén|Airam|Antonio|Elí|Yesica|Cristian'
+
+courses.search:
+  path: '/courses/search'
+  defaults:
+    _form: '\Drupal\courses\Form\CoursesSearchForm'
+    _title: 'Courses search'
+  requirements:
+    _permission: 'access content'
+
+courses.search2:
+  path: '/courses/search2'
+  defaults:
+    _form: '\Drupal\courses\Form\CoursesSearchForm'
+    _title: 'Courses search 2'
+  requirements:
+    _permission: 'access content'
+
+courses.registration:
+  path: '/courses/register'
+  defaults:
+    _form: '\Drupal\courses\Form\CoursesRegistrationForm'
+    _title: 'Course registry'
+  requirements:
+    _permission: 'access content'
+
+courses.add:
+  path: '/courses/add'
+  defaults:
+    _form: '\Drupal\courses\Form\CoursesForm'
+    _title: 'Add course'
+  requirements:
+    _permission: 'administer course'
+
+courses.edit:
+  path: '/courses/{course}/edit'
+  defaults:
+    _form: '\Drupal\courses\Form\CoursesForm'
+    _title: 'Edit course'
+  requirements:
+    _entity_access: 'course.update'
+  options:
+    parameters:
+      course:
+        type: entity:node
+
+# courses.delete:
+#   path: '/courses/{node}/delete'
+#   defaults:
+#     _entity_form: 'node.delete'
+#     _title: 'Delete course'
+#   requirements:
+#     _entity_access: 'node.delete'
+#     node: '\d+'
+#   options:
+#     parameters:
+#       node:
+#         type: entity:node
+
+courses.delete:
+  path: '/courses/{node}/delete'
+  defaults:
+    _form: '\Drupal\courses\Form\CoursesDeleteForm'
+    _title: 'Delete course'
+  requirements:
+    _entity_access: 'node.delete'
+    node: '\d+'
+  options:
+    parameters:
+      node:
+        type: entity:node
+  

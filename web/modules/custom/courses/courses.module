@@ -1,0 +1,88 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/** 
+ * Implements hook_theme()
+ */
+function courses_theme($existing, $type, $theme, $path): array {
+    return [
+        'course_details' => [
+            'variables' => [
+                'name' => null,      
+                'duration' => null,
+                'price' => null,
+                'sale' => null,
+                'tags' => null,
+                'teacher' => null,
+            ],
+            'template' => 'course-details'
+        ]
+    ];
+}
+
+
+function courses_form_courses_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void{
+    $route_name = \Drupal::routeMatch()->getRouteName();
+
+    if($route_name !== 'courses.search'){
+        return;
+    }
+
+    $form['#validate'][] = 'courses_extra_validate';
+
+    // Para añadir un procesamiento adicional
+    $form['#submit'][] = 'courses_extra_submit';
+
+    $form['name']['#title'] = 'CHANGED TITLE';
+
+    $form['name']['#description'] = 'Description';
+
+    $form['name']['#attributes']['placeholder'] = 'Ej. de placeholder';
+
+    $form['name']['#required'] = true;
+
+    $form['name']['#maxlength'] = 25;
+
+    $form['name']['#elemen_validate'][] = 'courses_search_name_validate';
+
+    $form['action']['submit']['#value'] = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+}
+
+
+function courses_search_name_validate(array &$element, FormStateInterface $form_state, array &$form):void{
+    $name = trim((string) $element['#value']);
+
+    if(mb_strlen($name) < 2){
+        $form_state->setError($element,'Ponle 2 letras');
+    }
+}
+
+
+function courses_extra_validate(array &$form, FormStateInterface $form_state){
+    $name = trim((string) $form_state->getValue('name'));
+
+    if(str_contains($name, '@')){
+        $form_state->setErrorByName('name', t('La búsqueda no admite @.'));
+    }
+}
+
+function courses_extra_submit(array &$form, FormStateInterface $form_state){
+    \Drupal::logger('courses')->notice('Courses search done');
+}
+
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function courses_views_data_alter(array &$data): void {
+  // Añadimos una nueva opción de filtro a la tabla de títulos de nodos.
+  $data['node_field_data']['course_title_prefix'] = [
+    'title' => t('Courses: nombre comienza por una letra'),
+    'help' => t('Filtra los nombres según su letra inicial.'),
+    // Utiliza nuestro plugin personalizado como filtro.
+    'filter' => [
+      'id' => 'course_title_prefix',
+    ],
+  ];
+}
